@@ -1,23 +1,18 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import AddRecipe from './pages/AddRecipe';
+import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
-
-  async function getData() {
-    try{
-      const response = await fetch('http://localhost: 8080')
-      const data = response.json()
-      console.log(data)
-    } catch(e) {
-      console.log(e)
-    }
-  }
-  getData()
-
   return (
-    <>
-      Hello (from frontend)
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/add" element={<AddRecipe />} />
+        <Route path="/recipe/:id" element={<RecipeDetails />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
