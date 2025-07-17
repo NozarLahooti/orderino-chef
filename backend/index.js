@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDb from './db.js'
+import recipeRoutes from './routes/recipeRoutes.js'
 
 
 const app = express()
@@ -17,6 +18,10 @@ app.get('/', (req, res) => {
     res.json('Hello (from server)')
     
 })
+
+// Mount routes
+app.use('/api/recipes', recipeRoutes)
+
 app.listen(port, () => {
      console.log('listining on port:' + port)
     })
