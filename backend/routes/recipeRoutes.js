@@ -42,11 +42,15 @@ router.post('/', async (req, res) => {
 // @route   PUT /api/recipes/:id
 router.put('/:id', async (req, res) => {
   try {
-    const updatedRecipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedRecipe = await Recipe.findByIdAndUpdate(
+        req.params.id, 
+        req.body, 
+        { new: true, runValidators: true }
+    );
     if (!updatedRecipe) return res.status(404).json({ message: 'Recipe not found' });
     res.json(updatedRecipe);
   } catch (error) {
-    res.status(400).json({ message: 'Update Failed' });
+    res.status(400).json({ message: 'Update Failed', 'error': error.message });
   }
 });
 
