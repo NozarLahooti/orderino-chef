@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios'
 
 export default function AddRecipe() {
   const [title, setTitle] = useState('');           // State for recipe title
@@ -8,14 +9,19 @@ export default function AddRecipe() {
 
   // Handle form submit
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log({
-    title,
-    ingredients: ingredients.split(',').map(item => item.trim()), // Convert to array
-    instructions,
-    imageURL
+  try {
+    await axios.post('http://localhost:8080/api/recipes', {
+        title,
+        ingredients: ingredients.split(',').map(item => item.trim()), // Convert to array
+        instructions,
+        imageURL
   });
+    console.log('Recipe added!')
+  } catch (error) {
+    console.error('Error adding recipe:', error)
+  }
 };
   
   return (
@@ -31,4 +37,3 @@ export default function AddRecipe() {
     </div>
   );
 }
-
