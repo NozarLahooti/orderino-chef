@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function AddRecipe() {
   const [title, setTitle] = useState('');           // State for recipe title
   const [ingredients, setIngredients] = useState(''); // State for ingredients
   const [instructions, setInstructions] = useState(''); // State for instructions
   const [imageURL, setImageURL] = useState('');     // State for image URL
+
+  // Initialize navigation
+  const navigate = useNavigate()
 
   // Handle form submit
 
@@ -18,7 +22,7 @@ export default function AddRecipe() {
         instructions,
         imageURL
   });
-    console.log('Recipe added!')
+    navigate('/')
   } catch (error) {
     console.error('Error adding recipe:', error)
   }
@@ -27,7 +31,7 @@ export default function AddRecipe() {
   return (
     <div>
       <h1>Add New Recipe</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
         <input type="text" placeholder="Ingredients (comma separated)" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
         <textarea placeholder="Instructions" value={instructions} onChange={(e) => setInstructions(e.target.value)}></textarea>
