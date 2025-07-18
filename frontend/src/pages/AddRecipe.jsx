@@ -7,10 +7,16 @@ export default function AddRecipe() {
   const [imageURL, setImageURL] = useState('');     // State for image URL
 
   // Handle form submit
+
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log({title, ingredients, instructions, imageURL}) // Log form data
-  }
+  e.preventDefault();
+  console.log({
+    title,
+    ingredients: ingredients.split(',').map(item => item.trim()), // Convert to array
+    instructions,
+    imageURL
+  });
+};
   
   return (
     <div>
