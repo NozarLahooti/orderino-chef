@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function RecipeDetails() {
-  const { id } = useParams(); // Get recipe ID from URL
+  const { id } = useParams(); // Get recipe ID 
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {

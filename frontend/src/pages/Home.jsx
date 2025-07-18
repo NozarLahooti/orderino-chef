@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Make recipe title clickable
 
 export default function Home() {
   // Holds all recipes fetched from API
@@ -28,8 +29,11 @@ export default function Home() {
         // Render list of recipe titles
         <ul>
           {recipes.map(recipe => (
-            <li key={recipe._id}>
-              <strong>{recipe.title}</strong>
+            <li key={recipe._id}> 
+              <Link to={`/recipe/${recipe._id}`}> {/* Make it clickable */}
+                <strong>{recipe.title}</strong>
+              </Link>
+
             </li>
           ))}
         </ul>
