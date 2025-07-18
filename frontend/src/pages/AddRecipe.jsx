@@ -3,7 +3,8 @@ import { useState } from 'react';
 export default function AddRecipe() {
   const [title, setTitle] = useState('');           // State for recipe title
   const [ingredients, setIngredients] = useState(''); // State for ingredients
- 
+  const [instructions, setInstructions] = useState(''); // State for instructions
+  const [imageURL, setImageURL] = useState('');     // State for image URL
 
   return (
     <div>
