@@ -9,8 +9,9 @@ export default function RecipeDetails() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/recipes/${id}`);
-        setRecipe(response.data);
+        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+);
+        setRecipe(response.data.meals[0]);
       } catch (error) {
         console.error('Error fetching recipe:', error);
       }
@@ -23,16 +24,27 @@ export default function RecipeDetails() {
 
   return (
     <div>
-      <h1>{recipe.title}</h1>
-      <img src={recipe.imageURL} alt={recipe.title} style={{ maxWidth: '300px' }} />
+      <h1>{recipe.strMeal}</h1>
+      {recipe.strMealThumb && (
+      <img 
+       src={recipe.strMealThumb}
+       alt={recipe.strMeal}
+       style={{ maxWidth: '300px' }}
+        />
+    )}
       <h3>Ingredients:</h3>
       <ul>
-        {recipe.ingredients.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
+
+         {Array.from({ length: 20 }, (_, i) => i + 1)
+            .map(i => recipe[`strIngredient${i}`])
+            .filter(ingredient => ingredient)
+            .map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+            ))}
+     
       </ul>
       <h3>Instructions:</h3>
-      <p>{recipe.instructions}</p>
+      <p>{recipes.strInstructions}</p>
     </div>
   );
 }

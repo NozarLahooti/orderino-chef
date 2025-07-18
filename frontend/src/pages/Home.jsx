@@ -10,8 +10,8 @@ export default function Home() {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/recipes');
-        setRecipes(response.data); // Store recipes in state
+        const response = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=pasta');
+        setRecipes(response.data.meals); // Store recipes in state
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
@@ -29,10 +29,17 @@ export default function Home() {
         // Render list of recipe titles
         <ul>
           {recipes.map(recipe => (
-            <li key={recipe._id}> 
-              <Link to={`/recipe/${recipe._id}`}> {/* Make it clickable */}
-                <strong>{recipe.title}</strong>
+            <li key={recipe.idMeal}> 
+              <Link to={`/recipe/${recipe.idMeal}`}> {/* Make it clickable */}
+                <strong>{recipe.strMeal}</strong>
               </Link>
+              {recipe.strMealThumb && (
+                <img
+                    src={recipe.strMealThumb}
+                    alt={recipe.strMeal}
+                    style={{ width: '150px', display: 'block', marginTop: '10px' }}
+                />
+              )}
 
             </li>
           ))}
