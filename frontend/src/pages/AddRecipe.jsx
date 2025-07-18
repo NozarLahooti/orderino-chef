@@ -1,3 +1,7 @@
 export default function AddRecipe() {
-  return <h1>Add Recipe</h1>;
+  return (
+    <div>
+      <h1>Add New Recipe</h1>
+    </div>
+  );
 }
