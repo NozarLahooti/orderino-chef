@@ -6,6 +6,12 @@ export default function AddRecipe() {
   const [instructions, setInstructions] = useState(''); // State for instructions
   const [imageURL, setImageURL] = useState('');     // State for image URL
 
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log({title, ingredients, instructions, imageURL}) // Log form data
+  }
+  
   return (
     <div>
       <h1>Add New Recipe</h1>
