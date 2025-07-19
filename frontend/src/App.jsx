@@ -6,6 +6,11 @@ import RecipeDetails from './pages/RecipeDetails';
 function App() {
   return (
     <Router>
+      <nav style={{ padding: '10px', background: '#f4f4f4'}}>
+        <a href='/' style={{ marginRight: '15px'}}>Home</a>
+        <a href='/add' style={{ marginRight: '15px'}}>Add Recipe</a>
+      </nav>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/add" element={<AddRecipe />} /> */}
