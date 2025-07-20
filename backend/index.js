@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDb from './db.js'
+import authRoutes from './routes/authRoutes.js'
 import recipeRoutes from './routes/recipeRoutes.js'
 
 
@@ -18,6 +19,8 @@ app.get('/', (req, res) => {
     res.json('Hello (from server)')
     
 })
+
+app.use('/api/auth', authRoutes )
 
 // Mount routes
 app.use('/api/recipes', recipeRoutes)

@@ -1,8 +1,14 @@
 import express from 'express';
 import axios from 'axios';
 import Recipe from '../models/orderino.js';
+import { authenticateToken } from '../middleware/authMiddleware.js';
+
 
 const router = express.Router();
+
+// Protect all routes below with JWT auth
+router.use(authenticateToken);
+
 
 // — Proxy Edamam recipe search —
 // GET /api/recipes/edamam?q=term
