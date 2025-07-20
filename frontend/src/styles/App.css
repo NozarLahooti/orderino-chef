@@ -1,88 +1,27 @@
-/* Container for Home Page */
-.home-container {
-  padding: 20px;
+/* Design tokens */
+:root {
+  --color-primary:    #0077cc;
+  --color-secondary:  #ffffff;
+  --color-text:       #333333;
+  --color-bg-light:   #f4f4f4;
+  --spacing-sm:       0.5rem;
+  --spacing:          1rem;
+  --spacing-lg:       2rem;
+  --radius:           4px;
+  --shadow:           0 2px 8px rgba(0, 0, 0, 0.1);
+  --transition-fast:  0.2s ease;
+  --font-lg:          1.5rem;
+  --font-md:          1.125rem;
 }
 
-/* Page title */
-.page-title {
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+/* Global nav */
+.main-nav {
+  padding: var(--spacing);
+  background: var(--color-bg-light);
 }
 
-/* Recipe grid layout */
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-/* Each recipe card */
-.recipe-card {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.recipe-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Recipe image */
-.recipe-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-/* Recipe title link */
-.recipe-title {
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
+.nav-link {
+  margin-right: var(--spacing);
   text-decoration: none;
-}
-
-.recipe-title:hover {
-  color: #0077cc;
-}
-
-/* Action buttons container */
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* Buttons */
-.edit-btn, .delete-btn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.edit-btn {
-  background-color: #0077cc;
-}
-
-.edit-btn:hover {
-  background-color: #005fa3;
-}
-
-.delete-btn {
-  background-color: #e74c3c;
-}
-
-.delete-btn:hover {
-  background-color: #c0392b;
+  color: inherit;
 }

@@ -1,25 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-// import AddRecipe from './pages/AddRecipe';
+import AddRecipe from './pages/AddRecipe';       // New Page
 import RecipeDetails from './pages/RecipeDetails';
 import EditRecipe from './pages/EditRecipe';
-import './styles/App.css'
-
+import './styles/App.css';
 
 function App() {
   return (
     <Router>
-      <nav style={{ padding: '10px', background: '#f4f4f4'}}>
-        <a href='/' style={{ marginRight: '15px'}}>Home</a>
-        <a href='/add' style={{ marginRight: '15px'}}>Add Recipe</a>
+      <nav className="main-nav">
+        <Link to="/"      className="nav-link">Home</Link>
+        <Link to="/add"   className="nav-link">Add Recipe</Link>
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/add" element={<AddRecipe />} /> */}
+        <Route path="/"           element={<Home />} />
+        <Route path="/add"        element={<AddRecipe />} />      
         <Route path="/recipe/:id" element={<RecipeDetails />} />
-        <Route path="/edit/:id" element={<EditRecipe />} />
-
+        <Route path="/edit/:id"   element={<EditRecipe />} />
       </Routes>
     </Router>
   );

@@ -1,50 +1,84 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import './RecipeDetails.css';
 
 export default function RecipeDetails() {
-  const { id } = useParams(); // Get recipe ID 
-  const [recipe, setRecipe] = useState(null);
+  const { id } = useParams();
+  const [recipe, setRecipe]   = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError]     = useState('');
 
   useEffect(() => {
-    const fetchRecipe = async () => {
+    async function fetchRecipe() {
       try {
-        const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
-);
-        setRecipe(response.data.meals[0]);
-      } catch (error) {
-        console.error('Error fetching recipe:', error);
+        // 1) Hit Edamam detail 
+        const res = await axios.get(
+          `http://localhost:8080/api/recipes/edamam/${id}`
+        );
+        // 2) The proxy returns the Edamam recipe object directly
+        setRecipe(res.data);
+      } catch (err) {
+        setError('Failed to load recipe');
+      } finally {
+        setLoading(false);
       }
-    };
-
+    }
     fetchRecipe();
   }, [id]);
 
-  if (!recipe) return <p>Loading...</p>;
+  if (loading) return <div className="loading">Loading…</div>;
+  if (error)   return <div className="error">{error}</div>;
+
+  // Destructure the fields you need from the Edamam recipe
+  const {
+    label,
+    image,
+    ingredientLines = [],
+    url
+  } = recipe;
 
   return (
-    <div>
-      <h1>{recipe.strMeal}</h1>
-      {recipe.strMealThumb && (
-      <img 
-       src={recipe.strMealThumb}
-       alt={recipe.strMeal}
-       style={{ maxWidth: '300px' }}
-        />
-    )}
-      <h3>Ingredients:</h3>
-      <ul>
+    <div className="recipe-details-container">
+      <h2 className="recipe-title">{label}</h2>
 
-         {Array.from({ length: 20 }, (_, i) => i + 1)
-            .map(i => recipe[`strIngredient${i}`])
-            .filter(ingredient => ingredient)
-            .map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-            ))}
-     
-      </ul>
-      <h3>Instructions:</h3>
-      <p>{recipes.strInstructions}</p>
+      {image && (
+        <img
+          src={image}
+          alt={label}
+          className="recipe-image"
+        />
+      )}
+
+      <section className="recipe-section">
+        <h3>Ingredients</h3>
+        <ul className="ingredients-list">
+          {ingredientLines.map((ing, i) => (
+            <li key={i}>{ing}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="recipe-section">
+        <h3>Instructions</h3>
+        {url ? (
+          <p>
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View full instructions
+            </a>
+          </p>
+        ) : (
+          <p>No instructions available.</p>
+        )}
+      </section>
+
+      <Link to={`/edit/${id}`} className="btn-edit">
+        Edit Recipe
+      </Link>
     </div>
   );
 }
