@@ -1,13 +1,26 @@
-# React + Vite
+# Orderino
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+A full‑stack recipe app that lets users search recipes via the Edamam API, create their own recipes, and manage them (CRUD) with a MongoDB backend.
 
-Currently, two official plugins are available:
+## Features
+- Search recipes from Edamam (with images)
+- Create, read, update, delete your own recipes
+- JWT authentication (register/login)
+- React front end with routed pages (Home, Add, Details, Edit, Login, Register)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+**Front End:** React, React Router, Axios, CSS  
+**Back End:** Node.js, Express, Mongoose  
+**Database:** MongoDB / Mongoose  
+**Auth:** JWT, bcrypt  
+**External API:** Edamam Recipe Search v2
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# orderino-chef
+
+
+
+
+
+
+
