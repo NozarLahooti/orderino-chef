@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import AddRecipe from './pages/AddRecipe';       // New Page
 import RecipeDetails from './pages/RecipeDetails';
 import Login from './pages/Login';
+import Logout from './pages/LogOut';
 import EditRecipe from './pages/EditRecipe';
 import Register from './pages/Register';
 import './styles/App.css';
@@ -14,6 +15,7 @@ function App() {
         <Link to="/"      className="nav-link">Home</Link>
         <Link to="/add"   className="nav-link">Add Recipe</Link>
         <Link to="/login" className="nav-link">Log In</Link>
+        <Link to="/logout" className="nav-link">Log Out</Link>
         <Link to="/register" className="nav_link">Register</Link>
       </nav>
 
@@ -23,6 +25,7 @@ function App() {
         <Route path="/recipe/:id" element={<RecipeDetails />} />
         <Route path="/edit/:id"   element={<EditRecipe />} />
         <Route path="/login"      element={<Login />} />
+        <Route path="/logout"      element={<Logout />} />
         <Route path="/register"      element={<Register />} />
 
       </Routes>
